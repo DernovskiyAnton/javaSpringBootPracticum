@@ -1,4 +1,4 @@
-package org.example.model;
+package com.yandex.praktikumSpringBoot.model;
 
 import java.util.List;
 
