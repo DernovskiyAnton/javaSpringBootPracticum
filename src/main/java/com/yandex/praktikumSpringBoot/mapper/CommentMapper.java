@@ -1,7 +1,7 @@
-package org.example.mapper;
+package com.yandex.praktikumSpringBoot.mapper;
 
-import org.example.dto.CommentDto;
-import org.example.model.Comment;
+import com.yandex.praktikumSpringBoot.dto.CommentDto;
+import com.yandex.praktikumSpringBoot.model.Comment;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,4 +1,4 @@
-package org.example.dto;
+package com.yandex.praktikumSpringBoot.dto;
 
 import java.util.List;
 

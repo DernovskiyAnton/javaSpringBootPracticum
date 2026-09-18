@@ -1,4 +1,4 @@
-package org.example.dto;
+package com.yandex.praktikumSpringBoot.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
