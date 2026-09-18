@@ -1,29 +1,29 @@
-package org.example.repository;
+package com.yandex.praktikumSpringBoot.repository;
 
-import org.example.config.TestConfig;
-import org.example.dto.PostRequest;
-import org.example.exception.ResourceNotFoundException;
-import org.example.model.Post;
+import com.yandex.praktikumSpringBoot.dto.PostRequest;
+import com.yandex.praktikumSpringBoot.exception.ResourceNotFoundException;
+import com.yandex.praktikumSpringBoot.model.Post;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitConfig(TestConfig.class)
-@Transactional
+@JdbcTest
+@Import({PostRepository.class, CommentRepository.class})
 class PostRepositoryTest {
 
     @Autowired
     private PostRepository postRepository;
 
     @Autowired
-    private org.springframework.jdbc.core.JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     private Post testPost;
     private PostRequest testPostRequest;

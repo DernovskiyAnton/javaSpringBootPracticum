@@ -1,23 +1,23 @@
-package org.example.repository;
+package com.yandex.praktikumSpringBoot.repository;
 
-import org.example.config.TestConfig;
-import org.example.dto.CommentRequest;
-import org.example.exception.ResourceNotFoundException;
-import org.example.model.Comment;
-import org.example.model.Post;
+import com.yandex.praktikumSpringBoot.dto.CommentRequest;
+import com.yandex.praktikumSpringBoot.exception.ResourceNotFoundException;
+import com.yandex.praktikumSpringBoot.model.Comment;
+import com.yandex.praktikumSpringBoot.model.Post;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitConfig(TestConfig.class)
-@Transactional
+@JdbcTest
+@Import({PostRepository.class, CommentRepository.class})
 class CommentRepositoryTest {
 
     @Autowired
@@ -26,12 +26,18 @@ class CommentRepositoryTest {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     private Long testPostId;
     private Comment testComment;
     private CommentRequest testCommentRequest;
 
     @BeforeEach
     void setUp() {
+        jdbcTemplate.execute("DELETE FROM comments");
+        jdbcTemplate.execute("DELETE FROM posts");
+
         Post testPost = new Post(0L, "Test Post", "Test text", List.of("tag"), 0, 0);
         Post savedPost = postRepository.save(testPost);
         testPostId = savedPost.id();
