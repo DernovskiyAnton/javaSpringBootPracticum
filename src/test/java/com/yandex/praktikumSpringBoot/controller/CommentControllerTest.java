@@ -1,24 +1,18 @@
-package org.example.controller;
+package com.yandex.praktikumSpringBoot.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.example.dto.CommentDto;
-import org.example.dto.CommentRequest;
-import org.example.exception.GlobalExceptionHandler;
-import org.example.exception.ResourceNotFoundException;
-import org.example.service.CommentService;
+import com.yandex.praktikumSpringBoot.dto.CommentDto;
+import com.yandex.praktikumSpringBoot.dto.CommentRequest;
+import com.yandex.praktikumSpringBoot.exception.ResourceNotFoundException;
+import com.yandex.praktikumSpringBoot.service.CommentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import java.util.List;
 
@@ -27,61 +21,23 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringJUnitConfig
-@ContextConfiguration(classes = {CommentControllerTest.TestConfig.class})
+@WebMvcTest(CommentController.class)
 class CommentControllerTest {
 
+    @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private CommentService commentService;
-
-    @Autowired
-    private CommentController commentController;
 
     @Autowired
     private ObjectMapper objectMapper;
 
+    @MockitoBean
+    private CommentService commentService;
+
     private CommentDto testCommentDto;
     private CommentRequest testCommentRequest;
 
-    @Configuration
-    static class TestConfig {
-        @Bean
-        public CommentService commentService() {
-            return mock(CommentService.class);
-        }
-
-        @Bean
-        public CommentController commentController(CommentService commentService) {
-            return new CommentController(commentService);
-        }
-
-        @Bean
-        public GlobalExceptionHandler globalExceptionHandler() {
-            return new GlobalExceptionHandler();
-        }
-
-        @Bean
-        public ObjectMapper objectMapper() {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.registerModule(new JavaTimeModule());
-            return mapper;
-        }
-    }
-
     @BeforeEach
     void setUp() {
-        ObjectMapper mapper = objectMapper;
-        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
-        validator.afterPropertiesSet();
-
-        mockMvc = MockMvcBuilders.standaloneSetup(commentController)
-                .setControllerAdvice(new GlobalExceptionHandler())
-                .setValidator(validator)
-                .setMessageConverters(new org.springframework.http.converter.json.MappingJackson2HttpMessageConverter(mapper))
-                .build();
-        reset(commentService);
         testCommentDto = new CommentDto(1L, "Test comment text", 10L);
         testCommentRequest = new CommentRequest("Test comment text", 10L);
     }

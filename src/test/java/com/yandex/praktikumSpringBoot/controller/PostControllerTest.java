@@ -1,27 +1,21 @@
-package org.example.controller;
+package com.yandex.praktikumSpringBoot.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.example.dto.PostDto;
-import org.example.dto.PostPage;
-import org.example.dto.PostRequest;
-import org.example.exception.GlobalExceptionHandler;
-import org.example.exception.ImageProcessingException;
-import org.example.exception.ResourceNotFoundException;
-import org.example.service.PostService;
+import com.yandex.praktikumSpringBoot.dto.PostDto;
+import com.yandex.praktikumSpringBoot.dto.PostPage;
+import com.yandex.praktikumSpringBoot.dto.PostRequest;
+import com.yandex.praktikumSpringBoot.exception.ImageProcessingException;
+import com.yandex.praktikumSpringBoot.exception.ResourceNotFoundException;
+import com.yandex.praktikumSpringBoot.service.PostService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import java.util.List;
 
@@ -30,63 +24,23 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringJUnitConfig
-@ContextConfiguration(classes = {PostControllerTest.TestConfig.class})
+@WebMvcTest(PostController.class)
 class PostControllerTest {
 
+    @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private PostService postService;
-
-    @Autowired
-    private PostController postController;
 
     @Autowired
     private ObjectMapper objectMapper;
 
+    @MockitoBean
+    private PostService postService;
+
     private PostDto testPostDto;
     private PostRequest testPostRequest;
 
-    @Configuration
-    static class TestConfig {
-        @Bean
-        public PostService postService() {
-            return mock(PostService.class);
-        }
-
-        @Bean
-        public PostController postController(PostService postService) {
-            return new PostController(postService);
-        }
-
-        @Bean
-        public GlobalExceptionHandler globalExceptionHandler() {
-            return new GlobalExceptionHandler();
-        }
-
-        @Bean
-        public ObjectMapper objectMapper() {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.registerModule(new JavaTimeModule());
-            return mapper;
-        }
-    }
-
     @BeforeEach
     void setUp() {
-        ObjectMapper mapper = objectMapper;
-        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
-        validator.afterPropertiesSet();
-
-        mockMvc = MockMvcBuilders.standaloneSetup(postController)
-                .setControllerAdvice(new GlobalExceptionHandler())
-                .setValidator(validator)
-                .setMessageConverters(
-                        new org.springframework.http.converter.json.MappingJackson2HttpMessageConverter(mapper),
-                        new org.springframework.http.converter.ByteArrayHttpMessageConverter())
-                .build();
-        reset(postService);
         testPostDto = new PostDto(1L, "Test Title", "Test Text", List.of("tag1", "tag2"), 10, 5);
         testPostRequest = new PostRequest("Test Title", "Test Text", List.of("tag1", "tag2"));
     }
