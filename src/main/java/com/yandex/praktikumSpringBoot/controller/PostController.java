@@ -1,11 +1,11 @@
-package org.example.controller;
+package com.yandex.praktikumSpringBoot.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.dto.PostDto;
-import org.example.dto.PostPage;
-import org.example.dto.PostRequest;
-import org.example.service.PostService;
+import com.yandex.praktikumSpringBoot.dto.PostDto;
+import com.yandex.praktikumSpringBoot.dto.PostPage;
+import com.yandex.praktikumSpringBoot.dto.PostRequest;
+import com.yandex.praktikumSpringBoot.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

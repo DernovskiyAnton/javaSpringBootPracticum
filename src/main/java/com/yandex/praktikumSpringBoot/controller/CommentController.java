@@ -1,10 +1,10 @@
-package org.example.controller;
+package com.yandex.praktikumSpringBoot.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.dto.CommentDto;
-import org.example.dto.CommentRequest;
-import org.example.service.CommentService;
+import com.yandex.praktikumSpringBoot.dto.CommentDto;
+import com.yandex.praktikumSpringBoot.dto.CommentRequest;
+import com.yandex.praktikumSpringBoot.service.CommentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
