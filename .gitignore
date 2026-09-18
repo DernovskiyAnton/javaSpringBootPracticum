@@ -1,7 +1,9 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+### Gradle ###
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+### Claude Code ###
+.claude/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
