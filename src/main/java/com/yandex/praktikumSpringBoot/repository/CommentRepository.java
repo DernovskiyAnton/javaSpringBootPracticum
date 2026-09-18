@@ -1,9 +1,9 @@
-package org.example.repository;
+package com.yandex.praktikumSpringBoot.repository;
 
 import lombok.RequiredArgsConstructor;
-import org.example.dto.CommentRequest;
-import org.example.exception.ResourceNotFoundException;
-import org.example.model.Comment;
+import com.yandex.praktikumSpringBoot.dto.CommentRequest;
+import com.yandex.praktikumSpringBoot.exception.ResourceNotFoundException;
+import com.yandex.praktikumSpringBoot.model.Comment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;

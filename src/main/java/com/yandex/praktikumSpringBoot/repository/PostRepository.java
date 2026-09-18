@@ -1,10 +1,10 @@
-package org.example.repository;
+package com.yandex.praktikumSpringBoot.repository;
 
 import lombok.RequiredArgsConstructor;
-import org.example.dto.PostDto;
-import org.example.dto.PostRequest;
-import org.example.exception.ResourceNotFoundException;
-import org.example.model.Post;
+import com.yandex.praktikumSpringBoot.dto.PostDto;
+import com.yandex.praktikumSpringBoot.dto.PostRequest;
+import com.yandex.praktikumSpringBoot.exception.ResourceNotFoundException;
+import com.yandex.praktikumSpringBoot.model.Post;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
