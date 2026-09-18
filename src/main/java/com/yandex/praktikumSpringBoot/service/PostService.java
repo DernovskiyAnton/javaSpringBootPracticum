@@ -1,13 +1,13 @@
-package org.example.service;
+package com.yandex.praktikumSpringBoot.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.dto.PostDto;
-import org.example.dto.PostPage;
-import org.example.dto.PostRequest;
-import org.example.exception.ImageProcessingException;
-import org.example.mapper.PostMapper;
-import org.example.model.Post;
-import org.example.repository.PostRepository;
+import com.yandex.praktikumSpringBoot.dto.PostDto;
+import com.yandex.praktikumSpringBoot.dto.PostPage;
+import com.yandex.praktikumSpringBoot.dto.PostRequest;
+import com.yandex.praktikumSpringBoot.exception.ImageProcessingException;
+import com.yandex.praktikumSpringBoot.mapper.PostMapper;
+import com.yandex.praktikumSpringBoot.model.Post;
+import com.yandex.praktikumSpringBoot.repository.PostRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
