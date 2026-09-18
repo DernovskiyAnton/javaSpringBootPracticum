@@ -1,4 +1,4 @@
-package org.example.exception;
+package com.yandex.praktikumSpringBoot.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.dao.EmptyResultDataAccessException;

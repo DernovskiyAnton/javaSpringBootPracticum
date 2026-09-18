@@ -1,4 +1,4 @@
-package org.example.exception;
+package com.yandex.praktikumSpringBoot.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

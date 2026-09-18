@@ -1,4 +1,4 @@
-package org.example.exception;
+package com.yandex.praktikumSpringBoot.exception;
 
 import java.time.LocalDateTime;
 import java.util.List;
