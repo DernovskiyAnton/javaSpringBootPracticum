@@ -1,11 +1,11 @@
-package org.example.service;
+package com.yandex.praktikumSpringBoot.service;
 
-import org.example.dto.CommentDto;
-import org.example.dto.CommentRequest;
-import org.example.exception.ResourceNotFoundException;
-import org.example.mapper.CommentMapper;
-import org.example.model.Comment;
-import org.example.repository.CommentRepository;
+import com.yandex.praktikumSpringBoot.dto.CommentDto;
+import com.yandex.praktikumSpringBoot.dto.CommentRequest;
+import com.yandex.praktikumSpringBoot.exception.ResourceNotFoundException;
+import com.yandex.praktikumSpringBoot.mapper.CommentMapper;
+import com.yandex.praktikumSpringBoot.model.Comment;
+import com.yandex.praktikumSpringBoot.repository.CommentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

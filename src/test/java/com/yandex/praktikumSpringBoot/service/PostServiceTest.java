@@ -1,13 +1,13 @@
-package org.example.service;
+package com.yandex.praktikumSpringBoot.service;
 
-import org.example.dto.PostDto;
-import org.example.dto.PostPage;
-import org.example.dto.PostRequest;
-import org.example.exception.ImageProcessingException;
-import org.example.exception.ResourceNotFoundException;
-import org.example.mapper.PostMapper;
-import org.example.model.Post;
-import org.example.repository.PostRepository;
+import com.yandex.praktikumSpringBoot.dto.PostDto;
+import com.yandex.praktikumSpringBoot.dto.PostPage;
+import com.yandex.praktikumSpringBoot.dto.PostRequest;
+import com.yandex.praktikumSpringBoot.exception.ImageProcessingException;
+import com.yandex.praktikumSpringBoot.exception.ResourceNotFoundException;
+import com.yandex.praktikumSpringBoot.mapper.PostMapper;
+import com.yandex.praktikumSpringBoot.model.Post;
+import com.yandex.praktikumSpringBoot.repository.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
